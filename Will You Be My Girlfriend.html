@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>For Angel ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --pink-50: #fff5f8;
+    --pink-100: #ffe3ee;
+    --pink-200: #ffc9de;
+    --pink-300: #ffa6c9;
+    --pink-400: #ff7eb0;
+    --pink-500: #ff5c9d;
+    --rose: #ff3d81;
+    --plum: #b8478a;
+    --cream: #fffafc;
+    --ink: #6b3a52;
+    --ink-soft: #9b6b85;
+    --glass: rgba(255, 255, 255, 0.55);
+    --glass-brd: rgba(255, 255, 255, 0.7);
+    --shadow: 0 20px 60px -18px rgba(255, 92, 157, 0.45);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Quicksand', system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(120% 90% at 15% 5%, #fff0f6 0%, transparent 55%),
+      radial-gradient(120% 100% at 85% 100%, #ffe0ef 0%, transparent 50%),
+      linear-gradient(160deg, #fff7fb 0%, #ffe9f3 45%, #ffd9ec 100%);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ============ Floating hearts background ============ */
+  #heartsBg { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+  .float-heart {
+    position: absolute;
+    bottom: -40px;
+    color: var(--pink-300);
+    opacity: 0;
+    animation: floatUp linear infinite;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 4px 6px rgba(255, 92, 157, 0.25));
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) translateX(0) rotate(0deg) scale(0.6); opacity: 0; }
+    12%  { opacity: var(--peak, 0.8); }
+    50%  { transform: translateY(-55vh) translateX(var(--drift, 20px)) rotate(20deg) scale(1); }
+    88%  { opacity: var(--peak, 0.8); }
+    100% { transform: translateY(-115vh) translateX(calc(var(--drift, 20px) * -1)) rotate(-15deg) scale(0.9); opacity: 0; }
+  }
+
+  /* ============ Layout ============ */
+  .stage {
+    position: relative;
+    z-index: 2;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 18px calc(28px + env(safe-area-inset-bottom));
+  }
+
+  .card {
+    position: relative;
+    width: min(480px, 100%);
+    background: var(--glass);
+    border: 1.5px solid var(--glass-brd);
+    border-radius: 32px;
+    padding: 34px 26px 30px;
+    box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.9);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    text-align: center;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(140% 80% at 50% -10%, rgba(255,255,255,0.6), transparent 60%);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--pink-400);
+    margin-bottom: 10px;
+  }
+
+  .headline {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: clamp(2.1rem, 8.5vw, 2.9rem);
+    line-height: 1.05;
+    color: var(--rose);
+    text-wrap: balance;
+    margin-bottom: 6px;
+  }
+  .headline .name {
+    display: inline-block;
+    background: linear-gradient(100deg, var(--rose), var(--plum));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: nameGlow 3s ease-in-out infinite;
+  }
+  @keyframes nameGlow { 0%,100%{ filter: drop-shadow(0 0 0 rgba(255,61,129,0)); } 50%{ filter: drop-shadow(0 3px 14px rgba(255,61,129,0.45)); } }
+
+  .subheading {
+    font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    font-weight: 500;
+    min-height: 5.6em;
+    margin: 14px auto 6px;
+    max-width: 36ch;
+    text-wrap: pretty;
+  }
+  .cursor { display: inline-block; width: 2px; margin-left: 1px; background: var(--pink-400); animation: blink 0.9s steps(1) infinite; vertical-align: -2px; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ============ Kitten ============ */
+  .kitten-wrap {
+    margin: 6px auto 4px;
+    width: 168px; height: 168px;
+    display: grid; place-items: center;
+    animation: bob 3.4s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100%{ transform: translateY(0) rotate(-1.5deg);} 50%{ transform: translateY(-9px) rotate(1.5deg);} }
+  .kitten { width: 100%; height: 100%; overflow: visible; }
+  .kitten .blink { transform-box: fill-box; transform-origin: center; animation: kblink 4.2s ease-in-out infinite; }
+  @keyframes kblink { 0%,92%,100%{ transform: scaleY(1);} 95%{ transform: scaleY(0.08);} }
+  .kitten .tail { transform-box: fill-box; transform-origin: 18px 70px; animation: tail 3s ease-in-out infinite; }
+  @keyframes tail { 0%,100%{ transform: rotate(-6deg);} 50%{ transform: rotate(10deg);} }
+  .kitten .cheek { animation: blush 3s ease-in-out infinite; }
+  @keyframes blush { 0%,100%{ opacity: 0.55;} 50%{ opacity: 0.95;} }
+
+  .question {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: clamp(1.7rem, 6.6vw, 2.15rem);
+    color: var(--plum);
+    margin: 8px 0 22px;
+    text-wrap: balance;
+  }
+
+  /* ============ Buttons ============ */
+  .btn-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 64px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 16px 30px;
+    font-size: 1.05rem;
+    transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s ease, background 0.25s;
+    will-change: transform;
+  }
+  .btn-yes {
+    color: #fff;
+    background: linear-gradient(135deg, var(--pink-500), var(--rose));
+    box-shadow: 0 12px 26px -8px rgba(255,61,129,0.7), inset 0 1px 0 rgba(255,255,255,0.4);
+    transform: scale(var(--yes-scale, 1));
+  }
+  .btn-yes:active { filter: brightness(0.97); }
+  .btn-yes::after { content: ""; }
+
+  .btn-no {
+    color: var(--ink-soft);
+    background: #fff;
+    border: 1.5px solid var(--pink-200);
+    box-shadow: 0 6px 16px -8px rgba(155,107,133,0.4);
+    transform: scale(var(--no-scale, 1));
+  }
+  .btn-no.roaming {
+    position: fixed;
+    z-index: 60;
+    margin: 0;
+  }
+
+  /* ============ Success overlay ============ */
+  #success {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 18px;
+    background:
+      radial-gradient(120% 90% at 50% 0%, #fff0f6 0%, transparent 55%),
+      linear-gradient(160deg, #fff7fb 0%, #ffe2f0 50%, #ffd0e7 100%);
+    overflow-y: auto;
+  }
+  #success.show { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .success-inner { width: min(460px, 100%); text-align: center; }
+  .yay {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: clamp(2.6rem, 12vw, 4rem);
+    color: var(--rose);
+    line-height: 1.02;
+    animation: pop 0.7s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes pop { 0%{ transform: scale(0.4); opacity: 0;} 60%{ transform: scale(1.1);} 100%{ transform: scale(1); opacity: 1;} }
+  .yay-sub {
+    font-size: clamp(1rem, 4.2vw, 1.18rem);
+    font-weight: 600;
+    color: var(--plum);
+    margin: 14px auto 26px;
+    max-width: 30ch;
+    line-height: 1.55;
+    text-wrap: pretty;
+    animation: rise 0.6s ease 0.3s both;
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(16px);} to { opacity: 1; transform: translateY(0);} }
+
+  .beat-heart {
+    width: 96px; height: 96px;
+    margin: 0 auto 24px;
+    animation: heartbeat 1.3s ease-in-out infinite, rise 0.6s ease 0.2s both;
+    filter: drop-shadow(0 12px 22px rgba(255,61,129,0.5));
+  }
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    14% { transform: scale(1.22); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.16); }
+    56% { transform: scale(1); }
+  }
+
+  .status-card {
+    background: var(--glass);
+    border: 1.5px solid var(--glass-brd);
+    border-radius: 24px;
+    padding: 22px 22px 20px;
+    box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.9);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    text-align: left;
+    animation: rise 0.6s ease 0.5s both;
+  }
+  .status-title {
+    font-size: 0.74rem; letter-spacing: 0.28em; text-transform: uppercase;
+    font-weight: 700; color: var(--pink-400); text-align: center; margin-bottom: 4px;
+  }
+  .status-conn {
+    text-align: center; font-weight: 700; color: #1f9d55;
+    font-size: 1.05rem; margin-bottom: 16px;
+  }
+  .status-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 11px 0; border-top: 1px dashed var(--pink-200);
+    font-weight: 600;
+  }
+  .status-row .lbl { color: var(--ink-soft); font-size: 0.9rem; }
+  .status-row .val { color: var(--rose); font-weight: 700; letter-spacing: 0.02em; }
+  .stamp {
+    margin-top: 18px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    font-weight: 500;
+    animation: rise 0.6s ease 0.7s both;
+  }
+
+  /* ============ Music button ============ */
+  .music-btn {
+    position: fixed;
+    top: calc(16px + env(safe-area-inset-top));
+    right: 16px;
+    z-index: 70;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    border: 1.5px solid var(--glass-brd);
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 20px -8px rgba(255,61,129,0.5);
+    cursor: pointer;
+    display: grid; place-items: center;
+    color: var(--rose);
+    transition: transform 0.2s ease;
+  }
+  .music-btn:active { transform: scale(0.92); }
+  .music-btn svg { width: 22px; height: 22px; }
+  .music-btn .eq { display: none; }
+  .music-btn.playing .eq { display: block; }
+  .music-btn.playing .mute { display: none; }
+  .music-btn .ring {
+    position: absolute; inset: -4px; border-radius: 50%;
+    border: 2px solid var(--pink-300); opacity: 0;
+  }
+  .music-btn.playing .ring { animation: pulseRing 1.6s ease-out infinite; }
+  @keyframes pulseRing { 0%{ transform: scale(0.9); opacity: 0.7;} 100%{ transform: scale(1.5); opacity: 0;} }
+  .eq-bars { display: flex; gap: 2px; align-items: flex-end; height: 18px; }
+  .eq-bars span { width: 3px; background: var(--rose); border-radius: 2px; animation: eq 0.9s ease-in-out infinite; }
+  .eq-bars span:nth-child(1){ height: 40%; animation-delay: 0s; }
+  .eq-bars span:nth-child(2){ height: 90%; animation-delay: 0.2s; }
+  .eq-bars span:nth-child(3){ height: 60%; animation-delay: 0.4s; }
+  .eq-bars span:nth-child(4){ height: 100%; animation-delay: 0.1s; }
+  @keyframes eq { 0%,100%{ transform: scaleY(0.4);} 50%{ transform: scaleY(1);} }
+
+  /* ============ Loading screen ============ */
+  #loader {
+    position: fixed; inset: 0; z-index: 100;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px;
+    background: linear-gradient(160deg, #fff7fb 0%, #ffe2f0 55%, #ffd0e7 100%);
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #loader.hide { opacity: 0; visibility: hidden; }
+  .loader-heart { width: 84px; height: 84px; animation: heartbeat 1.2s ease-in-out infinite; filter: drop-shadow(0 10px 20px rgba(255,61,129,0.45)); }
+  .loader-text {
+    font-family: 'Quicksand', sans-serif; font-weight: 600;
+    color: var(--plum); font-size: 1.05rem; letter-spacing: 0.01em;
+    text-align: center;
+  }
+  .loader-dots span { animation: ld 1.2s infinite; }
+  .loader-dots span:nth-child(2){ animation-delay: 0.2s; }
+  .loader-dots span:nth-child(3){ animation-delay: 0.4s; }
+  @keyframes ld { 0%,100%{ opacity: 0.2; } 50%{ opacity: 1; } }
+  .loader-bar { width: 180px; height: 6px; border-radius: 999px; background: rgba(255,255,255,0.6); overflow: hidden; }
+  .loader-bar i { display: block; height: 100%; width: 40%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--pink-400), var(--rose));
+    animation: load 2.2s ease forwards; }
+  @keyframes load { 0%{ width: 0%; } 100%{ width: 100%; } }
+
+  #confetti, #burst { position: fixed; inset: 0; pointer-events: none; z-index: 55; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Loading screen -->
+  <div id="loader">
+    <svg class="loader-heart" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 28S2 19.5 2 9.5C2 4.8 5.8 1 10.5 1 13.2 1 15.6 2.5 16 4.5 16.4 2.5 18.8 1 21.5 1 26.2 1 30 4.8 30 9.5 30 19.5 16 28 16 28Z" fill="#ff3d81"/>
+    </svg>
+    <div class="loader-text">Preparing something special for you<span class="loader-dots"><span>.</span><span>.</span><span>.</span></span></div>
+    <div class="loader-bar"><i></i></div>
+  </div>
+
+  <!-- Floating hearts -->
+  <div id="heartsBg" aria-hidden="true"></div>
+
+  <!-- Music toggle -->
+  <button class="music-btn" id="musicBtn" aria-label="Toggle music">
+    <span class="ring"></span>
+    <svg class="mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+    </svg>
+    <span class="eq"><span class="eq-bars"><span></span><span></span><span></span><span></span></span></span>
+  </button>
+
+  <!-- Main stage -->
+  <div class="stage">
+    <div class="card">
+      <div class="eyebrow">a little question</div>
+      <h1 class="headline">To my beautiful <span class="name">Angel</span> ❤️</h1>
+
+      <div class="kitten-wrap" aria-hidden="true">
+        <svg class="kitten" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- tail -->
+          <path class="tail" d="M18 70 C2 64 4 90 22 86" stroke="#ffb3d1" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <!-- body -->
+          <ellipse cx="60" cy="92" rx="36" ry="26" fill="#ffd6e6"/>
+          <!-- ears -->
+          <path d="M30 38 L24 14 L48 30 Z" fill="#ffc2dd"/>
+          <path d="M90 38 L96 14 L72 30 Z" fill="#ffc2dd"/>
+          <path d="M33 33 L30 22 L42 30 Z" fill="#ff9ec4"/>
+          <path d="M87 33 L90 22 L78 30 Z" fill="#ff9ec4"/>
+          <!-- head -->
+          <circle cx="60" cy="56" r="34" fill="#ffe1ee"/>
+          <!-- cheeks -->
+          <ellipse class="cheek" cx="40" cy="64" rx="8" ry="5.5" fill="#ff9ec4"/>
+          <ellipse class="cheek" cx="80" cy="64" rx="8" ry="5.5" fill="#ff9ec4"/>
+          <!-- eyes -->
+          <g class="blink">
+            <circle cx="48" cy="54" r="5.5" fill="#5b3148"/>
+            <circle cx="72" cy="54" r="5.5" fill="#5b3148"/>
+            <circle cx="50" cy="52" r="1.8" fill="#fff"/>
+            <circle cx="74" cy="52" r="1.8" fill="#fff"/>
+          </g>
+          <!-- nose + mouth -->
+          <path d="M57 62 L63 62 L60 66 Z" fill="#ff6fa5"/>
+          <path d="M60 66 Q54 71 49 67 M60 66 Q66 71 71 67" stroke="#b8478a" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- whiskers -->
+          <path d="M30 56 H16 M31 62 H18" stroke="#ffb3d1" stroke-width="2" stroke-linecap="round"/>
+          <path d="M90 56 H104 M89 62 H102" stroke="#ffb3d1" stroke-width="2" stroke-linecap="round"/>
+          <!-- little heart above head -->
+          <path d="M60 14 c-2-3-7-2-7 2 0 3 4 5 7 7 3-2 7-4 7-7 0-4-5-5-7-2Z" fill="#ff3d81" opacity="0.9"/>
+        </svg>
+      </div>
+
+      <p class="subheading" id="subheading"></p>
+
+      <h2 class="question">Will you be my girlfriend? 🥺❤️</h2>
+
+      <div class="btn-row" id="btnRow">
+        <button class="btn btn-yes" id="yesBtn">YES ❤️</button>
+        <button class="btn btn-no" id="noBtn">NO 😅</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success -->
+  <div id="success">
+    <div class="success-inner">
+      <svg class="beat-heart" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 28S2 19.5 2 9.5C2 4.8 5.8 1 10.5 1 13.2 1 15.6 2.5 16 4.5 16.4 2.5 18.8 1 21.5 1 26.2 1 30 4.8 30 9.5 30 19.5 16 28 16 28Z" fill="#ff3d81"/>
+      </svg>
+      <div class="yay">YAYYY!! ❤️</div>
+      <p class="yay-sub">You just made me the happiest software developer alive.</p>
+
+      <div class="status-card">
+        <div class="status-title">Relationship Status</div>
+        <div class="status-conn">Connected Successfully ✅</div>
+        <div class="status-row"><span class="lbl">Boyfriend</span><span class="val">HANS</span></div>
+        <div class="status-row"><span class="lbl">Girlfriend</span><span class="val">ANGEL</span></div>
+        <div class="stamp" id="stamp"></div>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="confetti"></canvas>
+  <canvas id="burst"></canvas>
+
+<script>
+/* ===================== Floating hearts background ===================== */
+(function () {
+  const bg = document.getElementById('heartsBg');
+  const colors = ['#ffa6c9', '#ff7eb0', '#ff5c9d', '#ffc9de', '#ff3d81'];
+  const HEART = 'M16 28S2 19.5 2 9.5C2 4.8 5.8 1 10.5 1 13.2 1 15.6 2.5 16 4.5 16.4 2.5 18.8 1 21.5 1 26.2 1 30 4.8 30 9.5 30 19.5 16 28 16 28Z';
+  const COUNT = window.innerWidth < 600 ? 14 : 22;
+  for (let i = 0; i < COUNT; i++) {
+    const size = 14 + Math.random() * 26;
+    const el = document.createElement('div');
+    el.className = 'float-heart';
+    el.innerHTML = `<svg width="${size}" height="${size*0.9}" viewBox="0 0 32 29"><path d="${HEART}" fill="${colors[i % colors.length]}"/></svg>`;
+    el.style.left = (Math.random() * 100) + 'vw';
+    const dur = 9 + Math.random() * 11;
+    el.style.animationDuration = dur + 's';
+    el.style.animationDelay = (-Math.random() * dur) + 's';
+    el.style.setProperty('--drift', (10 + Math.random() * 50) + 'px');
+    el.style.setProperty('--peak', (0.5 + Math.random() * 0.45).toFixed(2));
+    bg.appendChild(el);
+  }
+})();
+
+/* ===================== Typewriter subheading ===================== */
+(function () {
+  const text = "Every conversation with you makes my day better. Every smile of yours stays on my mind a little longer than it should. So I have one important question\u2026";
+  const el = document.getElementById('subheading');
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor';
+  cursor.innerHTML = '&nbsp;';
+  el.appendChild(cursor);
+  let i = 0;
+  function type() {
+    if (i <= text.length) {
+      cursor.insertAdjacentText('beforebegin', text.charAt(i - 1) || '');
+      i++;
+      setTimeout(type, 34 + Math.random() * 36);
+    } else {
+      setTimeout(() => cursor.remove(), 1200);
+    }
+  }
+  // start after loader
+  window.addEventListener('startTyping', type, { once: true });
+})();
+
+/* ===================== Loader ===================== */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loader = document.getElementById('loader');
+    loader.classList.add('hide');
+    window.dispatchEvent(new Event('startTyping'));
+    setTimeout(() => { loader.style.display = 'none'; }, 900);
+  }, 2300);
+});
+
+/* ===================== NO button: runaway + shrink/grow ===================== */
+(function () {
+  const noBtn = document.getElementById('noBtn');
+  const yesBtn = document.getElementById('yesBtn');
+  const row = document.getElementById('btnRow');
+  let attempts = 0;
+  let noScale = 1, yesScale = 1;
+  const taunts = ['NO 😅', 'are you sure? 🥺', 'think again! 😳', 'pleaseee 😭', 'no? really? 💔', 'last chance! 🙈', 'you can\'t catch me!', 'try again 😜', '😂😂', 'okay okay…'];
+
+  function isTouch() { return window.matchMedia('(hover: none)').matches || ('ontouchstart' in window); }
+
+  function moveAway() {
+    if (!noBtn.classList.contains('roaming')) {
+      noBtn.classList.add('roaming');
+    }
+    const bw = noBtn.offsetWidth, bh = noBtn.offsetHeight;
+    const pad = 12;
+    const maxX = window.innerWidth - bw - pad;
+    const maxY = window.innerHeight - bh - pad;
+    const x = pad + Math.random() * Math.max(1, maxX - pad);
+    const y = pad + Math.random() * Math.max(1, maxY - pad);
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+  }
+
+  function shrinkGrow() {
+    attempts++;
+    noScale = Math.max(0.45, noScale * 0.86);
+    yesScale = Math.min(2.2, yesScale * 1.14);
+    noBtn.style.setProperty('--no-scale', noScale.toFixed(3));
+    yesBtn.style.setProperty('--yes-scale', yesScale.toFixed(3));
+    noBtn.textContent = taunts[Math.min(attempts, taunts.length - 1)];
+  }
+
+  // Desktop: flee on proximity
+  document.addEventListener('mousemove', (e) => {
+    if (isTouch()) return;
+    const r = noBtn.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
+    const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+    if (dist < 110) { moveAway(); shrinkGrow(); }
+  });
+
+  // Any attempt to interact: flee
+  noBtn.addEventListener('click', (e) => { e.preventDefault(); moveAway(); shrinkGrow(); });
+  noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveAway(); shrinkGrow(); }, { passive: false });
+  noBtn.addEventListener('mouseenter', () => { if (!isTouch()) { moveAway(); shrinkGrow(); } });
+
+  // YES
+  yesBtn.addEventListener('click', () => { window.dispatchEvent(new Event('saidYes')); });
+})();
+
+/* ===================== Success: confetti + heart burst ===================== */
+window.addEventListener('saidYes', () => {
+  const success = document.getElementById('success');
+  // timestamp
+  const now = new Date();
+  const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+  document.getElementById('stamp').textContent = 'Response received on ' + now.toLocaleDateString(undefined, opts) + ' ❤️';
+
+  success.classList.add('show');
+  startMusicIfWanted();
+  runConfetti();
+  runHeartBurst();
+});
+
+/* ---- Confetti ---- */
+function runConfetti() {
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  function resize() { canvas.width = innerWidth * DPR; canvas.height = innerHeight * DPR; ctx.setTransform(DPR,0,0,DPR,0,0); }
+  resize(); window.addEventListener('resize', resize);
+  const colors = ['#ff3d81', '#ff7eb0', '#ffa6c9', '#ffd6e6', '#ffe3a3', '#fff', '#c084fc'];
+  const pieces = [];
+  const N = 200;
+  for (let i = 0; i < N; i++) {
+    pieces.push({
+      x: Math.random() * innerWidth,
+      y: -20 - Math.random() * innerHeight,
+      w: 6 + Math.random() * 8, h: 8 + Math.random() * 10,
+      color: colors[i % colors.length],
+      rot: Math.random() * Math.PI, vr: (-0.2 + Math.random() * 0.4),
+      vy: 2 + Math.random() * 3.5, vx: -1.5 + Math.random() * 3,
+      sway: Math.random() * Math.PI * 2, swayS: 0.02 + Math.random() * 0.04,
+      shape: Math.random() < 0.35 ? 'heart' : 'rect'
+    });
+  }
+  let frame = 0;
+  function draw() {
+    frame++;
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    let alive = false;
+    for (const p of pieces) {
+      p.y += p.vy; p.sway += p.swayS; p.x += p.vx + Math.sin(p.sway) * 0.8; p.rot += p.vr;
+      if (p.y < innerHeight + 40) alive = true;
+      ctx.save();
+      ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.fillStyle = p.color;
+      if (p.shape === 'heart') {
+        const s = p.w / 16;
+        ctx.scale(s, s);
+        ctx.beginPath();
+        ctx.moveTo(0, 4);
+        ctx.bezierCurveTo(0, 1, -3, -2, -6, 1);
+        ctx.bezierCurveTo(-9, 4, -3, 9, 0, 12);
+        ctx.bezierCurveTo(3, 9, 9, 4, 6, 1);
+        ctx.bezierCurveTo(3, -2, 0, 1, 0, 4);
+        ctx.fill();
+      } else {
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      }
+      ctx.restore();
+    }
+    if (alive && frame < 600) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, innerWidth, innerHeight);
+  }
+  draw();
+}
+
+/* ---- Heart explosion from center ---- */
+function runHeartBurst() {
+  const canvas = document.getElementById('burst');
+  const ctx = canvas.getContext('2d');
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  function resize() { canvas.width = innerWidth * DPR; canvas.height = innerHeight * DPR; ctx.setTransform(DPR,0,0,DPR,0,0); }
+  resize();
+  const cx = innerWidth / 2, cy = innerHeight / 2;
+  const colors = ['#ff3d81', '#ff7eb0', '#ffa6c9', '#ff5c9d'];
+  const hearts = [];
+  for (let i = 0; i < 60; i++) {
+    const ang = Math.random() * Math.PI * 2;
+    const sp = 5 + Math.random() * 9;
+    hearts.push({ x: cx, y: cy, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp, life: 1, size: 10 + Math.random() * 18, color: colors[i % colors.length], rot: Math.random() * Math.PI });
+  }
+  function drawHeart(x, y, s, color, alpha) {
+    ctx.save(); ctx.globalAlpha = alpha; ctx.translate(x, y); ctx.scale(s / 16, s / 16); ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(0, 4);
+    ctx.bezierCurveTo(0, 1, -3, -2, -6, 1);
+    ctx.bezierCurveTo(-9, 4, -3, 9, 0, 12);
+    ctx.bezierCurveTo(3, 9, 9, 4, 6, 1);
+    ctx.bezierCurveTo(3, -2, 0, 1, 0, 4);
+    ctx.fill(); ctx.restore();
+  }
+  let frame = 0;
+  function draw() {
+    frame++;
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    let alive = false;
+    for (const h of hearts) {
+      h.x += h.vx; h.y += h.vy; h.vy += 0.12; h.vx *= 0.98; h.life -= 0.012;
+      if (h.life > 0) { alive = true; drawHeart(h.x, h.y, h.size, h.color, Math.max(0, h.life)); }
+    }
+    if (alive) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, innerWidth, innerHeight);
+  }
+  draw();
+}
+
+/* ===================== Music (synthesized romantic loop) ===================== */
+let audioCtx = null, musicWanted = false, musicNodes = null, schedulerId = null;
+const musicBtn = document.getElementById('musicBtn');
+
+function buildMusic() {
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const master = audioCtx.createGain();
+  master.gain.value = 0.0;
+  master.connect(audioCtx.destination);
+
+  // gentle reverb-ish via delay
+  const delay = audioCtx.createDelay();
+  delay.delayTime.value = 0.33;
+  const fb = audioCtx.createGain();
+  fb.gain.value = 0.28;
+  delay.connect(fb); fb.connect(delay);
+  const wet = audioCtx.createGain(); wet.gain.value = 0.35;
+  delay.connect(wet); wet.connect(master);
+
+  musicNodes = { master, delay, wet };
+
+  // chord progression (soft, romantic) - frequencies
+  const A = 440;
+  const note = (n) => A * Math.pow(2, (n - 9) / 12); // n: semitone from C4=0-ish mapping
+  // Build a I–V–vi–IV-ish loop in C: C, G, Am, F
+  const chords = [
+    [60, 64, 67, 72], // C
+    [55, 59, 62, 67], // G
+    [57, 60, 64, 69], // Am
+    [53, 57, 60, 65]  // F
+  ].map(ch => ch.map(m => 440 * Math.pow(2, (m - 69) / 12)));
+
+  const beat = 0.5; // seconds per arpeggio note
+  let step = 0;
+
+  function midiFreq(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+
+  function playNote(freq, time, dur, gain, type) {
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.value = freq;
+    osc.connect(g);
+    g.connect(master);
+    g.connect(delay);
+    g.gain.setValueAtTime(0, time);
+    g.gain.linearRampToValueAtTime(gain, time + 0.04);
+    g.gain.exponentialRampToValueAtTime(0.0001, time + dur);
+    osc.start(time);
+    osc.stop(time + dur + 0.05);
+  }
+
+  function schedule() {
+    const now = audioCtx.currentTime;
+    const lookahead = 1.2;
+    while (nextTime < now + lookahead) {
+      const chordIdx = Math.floor(step / 4) % chords.length;
+      const chord = chords[chordIdx];
+      const arpNote = chord[step % chord.length];
+      // arpeggio melody
+      playNote(arpNote * 2, nextTime, 1.1, 0.10, 'triangle');
+      // soft bass on downbeat
+      if (step % 4 === 0) playNote(chord[0] / 2, nextTime, 1.8, 0.12, 'sine');
+      // pad
+      if (step % 4 === 0) {
+        chord.forEach(f => playNote(f, nextTime, 2.0, 0.035, 'sine'));
+      }
+      nextTime += beat;
+      step++;
+    }
+    schedulerId = setTimeout(schedule, 200);
+  }
+  let nextTime = audioCtx.currentTime + 0.1;
+  schedule();
+}
+
+function startMusicIfWanted() {
+  if (musicWanted && audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+function toggleMusic() {
+  if (!audioCtx) buildMusic();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  musicWanted = !musicWanted;
+  const target = musicWanted ? 0.5 : 0.0;
+  const now = audioCtx.currentTime;
+  musicNodes.master.gain.cancelScheduledValues(now);
+  musicNodes.master.gain.linearRampToValueAtTime(target, now + 0.6);
+  musicBtn.classList.toggle('playing', musicWanted);
+}
+
+musicBtn.addEventListener('click', toggleMusic);
+</script>
+</body>
+</html>
